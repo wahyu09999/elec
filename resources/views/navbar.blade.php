@@ -9,8 +9,8 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="/">Home</a></li>
-          <li><a class="nav-link scrollto" href="#team">List Produk</a></li>
+          <li><a class="nav-link" href="/">Home</a></li>
+          <li><a class="nav-link" href="#team">List Produk</a></li>
           {{-- <li><a class="nav-link scrollto" href="/home">Login</a></li>
           <li><a class="nav-link scrollto" href="/register">Register</a></li> --}}
           @guest

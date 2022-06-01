@@ -39,8 +39,6 @@
 </head> --}}
 
 <body>
-
-  @include('navbar')
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
 

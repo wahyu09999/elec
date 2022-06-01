@@ -36,11 +36,44 @@
   ======================================================== -->
 </head>
 <body>
+    <!-- ======= Header ======= -->
+<header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center" style="background-color: #36517e">
+
+      <h1 class="logo me-auto"><a href="index.html">ELECTRONIC SHOP</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link" href="/">Home</a></li>
+          <li><a class="nav-link" href="#team">List Produk</a></li>
+          {{-- <li><a class="nav-link scrollto" href="/home">Login</a></li>
+          <li><a class="nav-link scrollto" href="/register">Register</a></li> --}}
+          @guest
+            @if (Route::has('login'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+            @endif
+
+            @if (Route::has('register'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+            @endif
+        @endguest
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
 
     <main class="py-4">
         @yield('content')
     </main>
-    
+
     <!-- Vendor JS Files -->
   <script src="{{ asset('frontend/vendor/aos/aos.js') }}"></script>
   <script src="{{ asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
