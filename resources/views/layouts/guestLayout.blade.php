@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>ELECTRONIC SHOP - Index</title>
+  <title>ELECTRONIC SHOP - Guest</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -36,39 +36,7 @@
   ======================================================== -->
 </head>
 <body>
-    <!-- ======= Header ======= -->
-<header id="header" class="fixed-top ">
-    <div class="container d-flex align-items-center" style="background-color: #36517e">
-
-      <h1 class="logo me-auto"><a href="index.html">ELECTRONIC SHOP</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link" href="/">Home</a></li>
-          <li><a class="nav-link" href="#team">List Produk</a></li>
-          {{-- <li><a class="nav-link scrollto" href="/home">Login</a></li>
-          <li><a class="nav-link scrollto" href="/register">Register</a></li> --}}
-          @guest
-            @if (Route::has('login'))
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-            @endif
-
-            @if (Route::has('register'))
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                </li>
-            @endif
-        @endguest
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+  @include('navbar')
 
     <main class="py-4">
         @yield('content')
