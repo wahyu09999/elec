@@ -15,13 +15,30 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+
 Route::get('/', function () {
     return view('guest/guest');
 });
 
 
+
+
+
+
 Route::group(['middleware' =>['auth']],function(){
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
+
+    
+    Route::get('/list-produk', function () {
+        return view('dashboard/listproduk');
+    });
+
+
+
+
+
 });
+
+
 
