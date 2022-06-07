@@ -36,7 +36,7 @@
   ======================================================== -->
 </head>
 <body>
-  @include('navbar')
+  @include('guest/navbar')
 
     <main class="py-4">
         @yield('content')
