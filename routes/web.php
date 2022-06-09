@@ -19,10 +19,9 @@ Auth::routes();
 Route::get('/', function () {
     return view('guest/guest');
 });
-
-
-
-
+Route::get('/guest/listproduk', function () {
+    return view('guest/listproduk');
+});
 
 
 Route::group(['middleware' =>['auth']],function(){

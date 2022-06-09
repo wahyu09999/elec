@@ -10,7 +10,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link" href="/">Home</a></li>
-          <li><a class="nav-link" href="#team">List Produk</a></li>
+          <li><a class="nav-link" href="/guest/listproduk">List Produk</a></li>
           {{-- <li><a class="nav-link scrollto" href="/home">Login</a></li>
           <li><a class="nav-link scrollto" href="/register">Register</a></li> --}}
           @guest
@@ -31,7 +31,7 @@
                     {{ Auth::user()->name }}
                 </a>
 
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="background-color:cornflowerblue">
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
@@ -41,6 +41,9 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
+                    <a class="dropdown-item" href="/dashboard">
+                        Dashboard
+                    </a>
                 </div>
             </li>
         @endguest
