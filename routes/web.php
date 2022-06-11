@@ -24,19 +24,16 @@ Route::get('/guest/listproduk', function () {
 });
 
 
-Route::group(['middleware' =>['auth']],function(){
+Route::group(['middleware' =>['auth', 'cekRole:admin,user']],function(){
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
+});
 
+Route::group(['middleware' =>['auth', 'cekRole:user']],function(){
     
     Route::get('/list-produk', function () {
-        return view('dashboard/listproduk');
+        return view('dashboard/user/listproduk');
     });
-
-
-
-
-
 });
 
 

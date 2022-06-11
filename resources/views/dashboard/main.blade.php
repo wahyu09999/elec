@@ -17,8 +17,11 @@
 
   @include('dashboard/navbar')
     <div class="container-fluid">
-    @include('dashboard/sidebar')
-
+      @if (auth()->user()->role=='user')
+        @include('dashboard/user/sidebarUser')
+      @else
+        @include('dashboard/admin/sidebarAdmin')
+      @endif
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             @yield('content')
         </main>
