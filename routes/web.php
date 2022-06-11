@@ -34,6 +34,13 @@ Route::group(['middleware' =>['auth', 'cekRole:user']],function(){
     Route::get('/list-produk', function () {
         return view('dashboard/user/listproduk');
     });
+    Route::get('/cart', function () {
+        return view('dashboard/user/cart');
+    });
+    Route::get('/riwayat-transaksi', function () {
+        return view('dashboard/user/riwayatTransaksi');
+    });
+
 });
 
 

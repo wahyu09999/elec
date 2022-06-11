@@ -15,13 +15,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link {{Request::is('cart') ? 'active' : ''}}" href="/cart">
               <span data-feather="shopping-cart" class="align-text-bottom"></span>
               Cart
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link {{Request::is('riwayat-transaksi') ? 'active' : ''}}"" href="/riwayat-transaksi">
               <span data-feather="users" class="align-text-bottom"></span>
               Riwayat Transaksi
             </a>

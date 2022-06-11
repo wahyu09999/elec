@@ -10,13 +10,19 @@
           </li>
           <li class="nav-item">
             <a class="nav-link {{Request::is('list-produk') ? 'active' : ''}}" href="/list-produk">
-              <span data-feather="file" class="align-text-bottom"></span>
+              <span data-feather="file-plus" class="align-text-bottom"></span>
               Tambah Produk
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <span data-feather="shopping-cart" class="align-text-bottom"></span>
+              <span data-feather="file-plus" class="align-text-bottom"></span>
+              Tambah Kategori
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="percent" class="align-text-bottom"></span>
               Tambah Diskon
             </a>
           </li>
