@@ -15,7 +15,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link {{Request::is('kategori') ? 'active' : ''}}" href="/kategori">
               <span data-feather="file-plus" class="align-text-bottom"></span>
               Tambah Kategori
             </a>
