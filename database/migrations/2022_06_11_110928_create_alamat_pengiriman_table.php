@@ -15,7 +15,7 @@ class CreateAlamatPengirimanTable extends Migration
     {
         Schema::create('alamat_pengiriman', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('user_id');
             $table->string('no_tlp');
             $table->text('alamat');
             $table->string('provinsi');
@@ -23,7 +23,7 @@ class CreateAlamatPengirimanTable extends Migration
             $table->string('kecamatan');
             $table->string('kelurahan');
             $table->string('kodepos');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

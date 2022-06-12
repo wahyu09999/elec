@@ -9,7 +9,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{Request::is('list-produk') ? 'active' : ''}}" href="/list-produk">
+            <a class="nav-link {{Request::is('barang') ? 'active' : ''}}" href="/barang">
               <span data-feather="file-plus" class="align-text-bottom"></span>
               Tambah Produk
             </a>
@@ -21,7 +21,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="">
               <span data-feather="percent" class="align-text-bottom"></span>
               Tambah Diskon
             </a>

@@ -15,12 +15,12 @@ class CreateDetailTransaksiTable extends Migration
     {
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_cart');
+            $table->unsignedBigInteger('cart_id');
             $table->integer('jumlah');
             $table->integer('total');
             $table->date('tgl_transaksi');
             $table->time('jam_transaksi');
-            $table->foreign('id_cart')->references('id')->on('carts');
+            $table->foreign('cart_id')->references('id')->on('carts');
             $table->timestamps();
         });
     }

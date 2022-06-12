@@ -15,13 +15,13 @@ class CreateBarangTable extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_kategori');
+            $table->unsignedBigInteger('kategori_id');
             $table->string('nama')->nullable();
             $table->bigInteger('harga')->nullable();
             $table->bigInteger('stok')->nullable();
             $table->text('deskripsi')->nullable();
             $table->text('gambar')->nullable();
-            $table->foreign('id_kategori')->references('id')->on('kategoris');
+            $table->foreign('kategori_id')->references('id')->on('kategoris');
             $table->timestamps();
         });
     }

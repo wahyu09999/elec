@@ -15,10 +15,10 @@ class CreateDiskonsTable extends Migration
     {
         Schema::create('diskons', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_barang');
+            $table->unsignedBigInteger('barang_id');
             $table->integer('diskon')->nullable();
             $table->integer('min_pembelian')->nullable();
-            $table->foreign('id_barang')->references('id')->on('barang');
+            $table->foreign('barang_id')->references('id')->on('barang');
             $table->timestamps();
         });
     }

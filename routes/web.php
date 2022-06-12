@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\BarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::get('/guest/listproduk', function () {
 Route::group(['middleware' =>['auth', 'cekRole:admin,user']],function(){
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
     Route::resource('kategori', KategoriController::class);
+    Route::resource('barang', BarangController::class);
     
 });
 
