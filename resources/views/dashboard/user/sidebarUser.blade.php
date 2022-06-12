@@ -8,12 +8,14 @@
               Dashboard
             </a>
           </li>
+          
           <li class="nav-item">
-            <a class="nav-link {{Request::is('list-produk') ? 'active' : ''}}" href="/list-produk">
+          <a class="nav-link {{Request::is('barang') ? 'active' : ''}}" href="/barang">
               <span data-feather="file" class="align-text-bottom"></span>
               List Produk
             </a>
           </li>
+          
           <li class="nav-item">
             <a class="nav-link {{Request::is('cart') ? 'active' : ''}}" href="/cart">
               <span data-feather="shopping-cart" class="align-text-bottom"></span>
