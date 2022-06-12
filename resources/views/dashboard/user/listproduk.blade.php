@@ -36,18 +36,11 @@
                         <p>Jumlah Stok : {{$isi->stok}}
                         </p>
 
-                        {{-- <div class="card-text">
-                            @if ($isi->jumlah_buku > 0)
-                            <a href="{{route('chart/',$isi->id)}}" class="btn btn-success"><i
-                                    class="bi bi-bag-plus-fill"></i></a>
+                        <div class="card-text">
+                            @if ($isi->stok > 0)
+                            <a href="" class="btn btn-success">Beli</a>
                             @endif
-                            
-                            <a href="{{route('detail-buku',$isi->id)}}" class="btn btn-info"><i
-                                    class="bi bi-info"></i></a>
-                            <a href="{{route('delete-buku',$isi->id)}}"
-                                onclick="return confirm('Are you sure you want to delete')"
-                                class=" btn btn-danger  float-end"><i class="bi bi-trash"></i></a>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -58,3 +51,4 @@
     @endforeach
 
 @endsection
+{{-- {{route('chart/',$isi->id)}} --}}
