@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDiskonsTable extends Migration
+class CreateCartDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateDiskonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('diskons', function (Blueprint $table) {
+        Schema::create('cart_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('barang_id');
-            $table->integer('diskon')->nullable();
-            $table->integer('min_pembelian')->nullable();
+            $table->unsignedBigInteger('cart_id');
+            $table->integer('jumlah');
+            $table->integer('jumlah_harga');
             $table->foreign('barang_id')->references('id')->on('barang');
+            $table->foreign('cart_id')->references('id')->on('carts');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateDiskonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diskons');
+        Schema::dropIfExists('cart_details');
     }
 }

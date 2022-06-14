@@ -15,13 +15,11 @@ class CreateCartsTable extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('barang_id');
-            $table->unsignedBigInteger('alamat_pengiriman_id');
-            $table->integer('jumlah');
-            $table->integer('sub_total');
-            $table->text('gambar')->nullable();
-            $table->foreign('barang_id')->references('id')->on('barang');
-            $table->foreign('alamat_pengiriman_id')->references('id')->on('alamat_pengiriman');
+            $table->unsignedBigInteger('user_id');
+            $table->integer('jumlah_harga');
+            $table->date('tanggal');
+            $table->string('status');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

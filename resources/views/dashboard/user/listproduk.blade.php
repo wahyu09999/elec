@@ -36,11 +36,15 @@
                         <p>Jumlah Stok : {{$isi->stok}}
                         </p>
 
+                        <form method="POST" action="{{ url('cart') }}/{{ $isi->id }}" >
+                        @csrf
+                        <input type="text" name="jumlah_pesan" class="form-control" placeholder="Masukkan Jumlah Pesanan">
                         <div class="card-text">
                             @if ($isi->stok > 0)
-                            <a href="" class="btn btn-success">Beli</a>
+                            <button class="btn btn-success mt-3">Beli </button>
                             @endif
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -51,4 +55,3 @@
     @endforeach
 
 @endsection
-{{-- {{route('chart/',$isi->id)}} --}}

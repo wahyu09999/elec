@@ -13,7 +13,6 @@
     </div>
     <table class="table table-bordered">
         <tr>
-            <th>Nomor</th>
             <th>Nama Barang</th>
             <th>Nama Kategori</th>
             <th>Harga</th>
@@ -26,7 +25,6 @@
         @foreach ($data_barang as $brng)
         <tr>
  
-            <td>{{ $brng ->id }}</td>
             <td>{{ $brng ->nama }}</td>
             <td>{{ $brng ->kategori ->nama_kategori }}</td>
             <td>{{ $brng ->harga }}</td>

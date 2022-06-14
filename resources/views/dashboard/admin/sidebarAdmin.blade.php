@@ -21,12 +21,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
-              <span data-feather="percent" class="align-text-bottom"></span>
-              Tambah Diskon
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="users" class="align-text-bottom"></span>
                Daftar Transaksi

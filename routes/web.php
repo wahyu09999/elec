@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\BarangController;
 
 /*
@@ -34,16 +35,14 @@ Route::group(['middleware' =>['auth', 'cekRole:admin,user']],function(){
 });
 
 Route::group(['middleware' =>['auth', 'cekRole:user']],function(){
-    
-    Route::get('/list-produk', function () {
-        return view('dashboard/user/listproduk');
-    });
-    Route::get('/cart', function () {
-        return view('dashboard/user/cart');
-    });
+   
     Route::get('/riwayat-transaksi', function () {
         return view('dashboard/user/riwayatTransaksi');
     });
+    
+    Route::get('/cart-index',[CartController::class, 'index']);
+    Route::post('cart/{id}', [CartController::class, 'tambahCart']);
+    
 
 });
 
