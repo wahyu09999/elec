@@ -10,18 +10,28 @@
 
     <table class="table table-bordered">
         <tr>
+            <th>Nomor</th>
             <th>Nama Barang</th>
             <th>Jumlah Barang</th>
             <th>Harga</th>
+            <th>Jumlah Harga</th>
+            <th>Action</th>
 
         </tr>
+        <?php $no = 1; ?>
         @foreach ($data_cart_details as $crt)
         <tr>
- 
+            <td>{{ $no++ }}</td>
             <td>{{ $crt ->barang->nama }}</td>
             <td>{{ $crt ->jumlah }}</td>
+            <td>{{ $crt ->barang->harga }}</td>
             <td>{{ $crt ->jumlah_harga }}</td>
-
+            <td>
+            <form action="" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
             </td>
         </tr>
         @endforeach
