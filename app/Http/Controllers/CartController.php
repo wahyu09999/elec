@@ -58,7 +58,7 @@ class CartController extends Controller
         $cart->jumlah_harga = $cart->jumlah_harga + $barang->harga * $request->jumlah_pesan;
         $cart->update();
 
-        return redirect('/barang');
+        return redirect('/cart-index');
     }
 
     public function index(){
