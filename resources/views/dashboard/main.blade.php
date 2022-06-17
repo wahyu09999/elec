@@ -16,18 +16,14 @@
   <body>
 
   @include('dashboard/navbar')
-    <div class="container-fluid">
       @if (auth()->user()->role=='user')
         @include('dashboard/user/sidebarUser')
       @else
         @include('dashboard/admin/sidebarAdmin')
       @endif
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            @yield('content')
-        </main>
-    </div>
-    </div>
-
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          @yield('content')
+      </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 

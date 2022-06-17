@@ -34,12 +34,10 @@
             </td>
         </tr>
         @endforeach
-        <tr>
-            <td colspan="6" align="right">
-                <a href="{{ url('check-out')}}" class="btn btn-success">
-                    <i data-feather = "shopping-cart"></i> Konfirmasi Cart
-                </a>
-            </td>
-        </tr>
     </table>
+    <div class="float-right">
+        <a href="{{ url('check-out')}}" class="btn btn-success">
+            <i data-feather = "shopping-cart"></i> Konfirmasi Cart
+        </a>
+    </div>    
 @endsection

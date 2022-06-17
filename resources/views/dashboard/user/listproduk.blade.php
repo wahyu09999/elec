@@ -30,7 +30,7 @@
                     <div class="card-body">
                         <p class="card-text"><span class="text-info"><i class="ri-bookmark-2-line"></i>
                                 {{$isi->kategori()->first()->nama_kategori}}</span> /
-                            <span class="text-danger"> <i class="bi bi-person"></i> {{$isi->harga}}</span> /
+                            <span class="text-danger"> <i class="bi bi-person"></i>Rp. {{ number_format($isi->harga) }} </span> /
                             <span class="text-primary"><i class="bi bi-book-half"></i> {{$isi->deskripsi}}</span>
                         </p>
                         <p>Jumlah Stok : {{$isi->stok}}
