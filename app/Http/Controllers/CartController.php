@@ -66,4 +66,19 @@ class CartController extends Controller
 
         return view('/dashboard/user/cart', ['data_cart_details' => $data_cart_details]);
     }
+
+    public function deleteCart($id){
+        $cart_details = Cart_Details::where('id', $id)->first();
+
+        $cart = Cart::where('id', $cart_details->cart_id)->first();
+        $cart->jumlah_harga = $cart->jumlah_harga - $cart_details->jumlah_harga;
+        $cart->update();
+
+        $cart_details->delete();
+        
+        return redirect('/cart-index');
+    }
+
+    
+
 }

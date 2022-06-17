@@ -42,7 +42,7 @@ Route::group(['middleware' =>['auth', 'cekRole:user']],function(){
     
     Route::get('/cart-index',[CartController::class, 'index']);
     Route::post('cart/{id}', [CartController::class, 'tambahCart']);
-    
+    Route::delete('cart-delete/{id}', [CartController::class, 'deleteCart']);
 
 });
 

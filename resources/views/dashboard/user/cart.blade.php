@@ -24,10 +24,10 @@
             <td>{{ $no++ }}</td>
             <td>{{ $crt ->barang->nama }}</td>
             <td>{{ $crt ->jumlah }}</td>
-            <td>{{ $crt ->barang->harga }}</td>
-            <td>{{ $crt ->jumlah_harga }}</td>
+            <td>Rp. {{ number_format($crt ->barang->harga) }}</td>
+            <td>Rp. {{ number_format($crt ->jumlah_harga) }}</td>
             <td>
-            <form action="" method="POST">
+            <form action="{{ url('cart-delete')}}/{{ $crt->id }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -35,6 +35,10 @@
             </td>
         </tr>
         @endforeach
+
     </table>
+    <a href="" class="btn btn-success" >
+        <i data-feather = "shopping-cart"></i> Check Out
+    </a>
     
 @endsection
