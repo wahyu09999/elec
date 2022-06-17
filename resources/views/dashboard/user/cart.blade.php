@@ -7,7 +7,6 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h2>Cart</h2>
     </div>
-
     <table class="table table-bordered">
         <tr>
             <th>Nomor</th>
@@ -35,10 +34,12 @@
             </td>
         </tr>
         @endforeach
-
+        <tr>
+            <td colspan="6" align="right">
+                <a href="{{ url('check-out')}}" class="btn btn-success">
+                    <i data-feather = "shopping-cart"></i> Konfirmasi Cart
+                </a>
+            </td>
+        </tr>
     </table>
-    <a href="" class="btn btn-success" >
-        <i data-feather = "shopping-cart"></i> Check Out
-    </a>
-    
 @endsection

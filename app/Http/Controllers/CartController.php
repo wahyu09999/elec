@@ -35,8 +35,8 @@ class CartController extends Controller
         //cek cart details
         $cek_cart_details = Cart_Details::where('barang_id',$barang->id)->where('cart_id', $cart_details_new->id)->first();
 
-        $cart_details = new Cart_Details;
         if(empty($cek_cart_details)){
+            $cart_details = new Cart_Details;
             $cart_details->barang_id = $barang->id;
             $cart_details->cart_id = $cart_details_new->id;
             $cart_details->jumlah = $request->jumlah_pesan;
@@ -44,7 +44,7 @@ class CartController extends Controller
             $cart_details->save();
 
         }else{
-            $cek_cart_details = Cart_Details::where('barang_id',$barang->id)->where('cart_id', $cart_details_new->id)->first();
+            $cart_details = Cart_Details::where('barang_id',$barang->id)->where('cart_id', $cart_details_new->id)->first();
             $cart_details->jumlah =  $cart_details->jumlah + $request->jumlah_pesan;
             
             //harga update
@@ -62,6 +62,7 @@ class CartController extends Controller
     }
 
     public function index(){
+
         $data_cart_details = Cart_Details::with('barang')->with('cart')->get();
 
         return view('/dashboard/user/cart', ['data_cart_details' => $data_cart_details]);
@@ -77,6 +78,12 @@ class CartController extends Controller
         $cart_details->delete();
         
         return redirect('/cart-index');
+    }
+
+    public function checkout(){
+        
+        
+        return view('/dashboard/user/checkout');
     }
 
     
