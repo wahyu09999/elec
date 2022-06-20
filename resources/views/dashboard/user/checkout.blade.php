@@ -54,15 +54,21 @@
 									<td>Product</td>
 									<td>Total</td>
 								</tr>
+								@foreach($data_cart_details as $carts)
+								<tr>
+                                <td>{{ $carts->barang->nama }}</td>
+                                <td>Rp {{ number_format($carts->jumlah_harga) }}</td>
+								
+								</tr>
+								@endforeach
 								
 
 								
 							</tbody>
 							<tbody class="checkout-details">
-								
-								
 								<tr>
 									<td>Total</td>
+									<td>Rp. {{ number_format($cart->jumlah_harga) }}</td>
                                    
 								</tr>
 							</tbody>

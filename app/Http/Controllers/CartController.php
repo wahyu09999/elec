@@ -81,9 +81,11 @@ class CartController extends Controller
     }
 
     public function checkout(){
+      
+        $cart = Cart::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $data_cart_details = Cart_Details::with('barang')->with('cart')->get();
         
-        
-        return view('/dashboard/user/checkout');
+        return view('/dashboard/user/checkout', ['data_cart_details' => $data_cart_details, 'cart'=>$cart]);
     }
 
     
