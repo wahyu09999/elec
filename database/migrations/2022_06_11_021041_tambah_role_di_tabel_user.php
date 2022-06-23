@@ -14,7 +14,7 @@ class TambahRoleDiTabelUser extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table){
-            $table->string('role', 20)->after('email');
+            $table->string('role', 20)->after('email')->default('user');
         });
     }
 
