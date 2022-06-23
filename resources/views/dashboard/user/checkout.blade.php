@@ -31,6 +31,20 @@
                                 </thead>
                                 <tbody>
                                    
+                                @foreach($alamat as $item)
+                                        <tr>
+                                            <td>{{$item->nama_penerima}}</td>
+                                            <td>{{$item->alamat}}</td>
+                                            <td>{{$item->status}}</td>
+                                            <td>
+                                            <a class="btn btn-primary" href="/edit-address/{{$item->id}}">Edit</a>
+                                            <a class="btn btn-danger" href="{{ route('deleteAddress', $item->id) }}">Delete</button>
+                                            </td>
+                                        </tr>
+                                   @endforeach
+
+
+
 
                                 </tbody>
 
@@ -55,11 +69,15 @@
 									<td>Total</td>
 								</tr>
 								@foreach($data_cart_details as $carts)
+
+                                @if($carts->cart->status == 0)
+
 								<tr>
                                 <td>{{ $carts->barang->nama }}</td>
                                 <td>Rp {{ number_format($carts->jumlah_harga) }}</td>
 								
 								</tr>
+                                @endif
 								@endforeach
 								
 
@@ -73,7 +91,25 @@
 								</tr>
 							</tbody>
 						</table>
-						<a href="#" type="submit" form="finalize" class="boxed-btn" value="Place Order"></a>
+						<!-- <a href="#" type="submit" form="finalize" class="boxed-btn" value="Place Order"></a> -->
+
+                        <form action="/store-payment/{{$cart->id}}" method="post" style="width:19rem;margin-top:24px;" enctype="multipart/form-data">
+                        @csrf
+                            <label for="">Pilih alamat pengiriman</label>
+                            <select class="form-control" name="alamat_pengiriman" id="" required>
+                                <option value="" hidden selected>-- Pilih Alamat --</option>
+                                @foreach($alamat as $item)
+                                    <option value="{{$item->id}}">{{$item->alamat}}</option>
+                                @endforeach
+                            </select>
+                            <br>
+                            <label for="">Upload bukti pembayaran</label>
+                            <input type="file" name="bukti" class="form-control" id="" required>
+                            <br>
+                            <button type="submit" class="btn btn-block btn-primary">Checkout</button>
+                        </form>
+ 
+
 					</div>
 				</div>
 			</div>
@@ -89,14 +125,18 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="#" method="POST">
+            <!-- <form action="#" method="POST"> -->
+            <form action="/add-address" method="POST">
                 <div class="modal-body">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="tax-select mb-25px">
                                 <label>Nama Penerima</label>
-                                <input type="text" class="px-2 @error('nama_penerima') border-danger @enderror" name="nama_penerima" placeholder="Masukkan Nama Penerima" value="{{old('nama_penerima')}}" />
+                                <!-- <input type="text" class="px-2 @error('nama_penerima') border-danger @enderror" name="nama_penerima" placeholder="Masukkan Nama Penerima" value="{{old('nama_penerima')}}" /> -->
+
+                                <input type="text" class="px-2 @error('nama_penerima') border-danger @enderror" name="nama_penerima" placeholder="Masukkan Nama Penerima" value="{{Auth::user()->name}}" />
+
                                 @error('nama_penerima')
                                 <small class="text-danger">{{$message}}</small>
                                 @enderror
@@ -181,8 +221,13 @@
                                     <label>Status Alamat Pengiriman</label>
                                     <select class="email s-email s-wid @error('status') border-danger @enderror" name="status">
                                         <option disabled selected hidden>-- Pilih status alamat pengiriman --</option>
-                                        <option value="1">Utama</option>
-                                        <option value="0">Opsional</option>
+                                        <!-- <option value="1">Utama</option> -->
+                                        <!-- <option value="0">Opsional</option> -->
+
+                                        <option value="Utama">Utama</option>
+                                        <option value="Opsional">Opsional</option>
+
+
                                     </select>
                                 </div>
                                 @error('status')

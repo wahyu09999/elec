@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\GuestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,8 @@ Auth::routes();
 Route::get('/', function () {
     return view('guest/guest');
 });
-Route::get('/guest/listproduk', function () {
-    return view('guest/listproduk');
-});
+
+Route::get('/guest/listproduk', [GuestController::class, 'index']);
 
 
 Route::group(['middleware' =>['auth', 'cekRole:admin,user']],function(){
@@ -36,14 +36,20 @@ Route::group(['middleware' =>['auth', 'cekRole:admin,user']],function(){
 
 Route::group(['middleware' =>['auth', 'cekRole:user']],function(){
    
-    Route::get('/riwayat-transaksi', function () {
-        return view('dashboard/user/riwayatTransaksi');
-    });
+    
     
     Route::get('/cart-index',[CartController::class, 'index']);
     Route::post('cart/{id}', [CartController::class, 'tambahCart']);
     Route::delete('cart-delete/{id}', [CartController::class, 'deleteCart']);
     Route::get('check-out',[CartController::class, 'checkOut']);
+    Route::post('add-address', [CartController::class, 'addAdress']);
+    Route::get('edit-address/{id}', [CartController::class, 'editAddress']);
+    Route::get('delete-address/{id}', [CartController::class, 'deleteAddress'])->name("deleteAddress");
+    Route::post('store-edit-address/{id}', [CartController::class, 'storeEditAddress']);
+    Route::post('store-payment/{id}', [CartController::class, 'storePayment']);
+    Route::get('/riwayat-transaksi', [CartController::class, 'indexTransaction']);
+    Route::get('/cetak-transaksi/{id}', [CartController::class, 'prinTransaction']);
+
 
 });
 

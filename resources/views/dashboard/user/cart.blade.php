@@ -17,8 +17,19 @@
             <th>Action</th>
 
         </tr>
+
+        @php
+            $cartStatus = false
+        @endphp
+
+
         <?php $no = 1; ?>
         @foreach ($data_cart_details as $crt)
+        @if($crt->cart->status == 0)
+        @php
+            $cartStatus = true
+        @endphp
+
         <tr>
             <td>{{ $no++ }}</td>
             <td>{{ $crt ->barang->nama }}</td>
@@ -33,11 +44,16 @@
             </form>
             </td>
         </tr>
+        @endif
         @endforeach
     </table>
+
+    @if($cartStatus == true)
+
     <div class="float-right">
         <a href="{{ url('check-out')}}" class="btn btn-success">
             <i data-feather = "shopping-cart"></i> Konfirmasi Cart
         </a>
-    </div>    
+    </div> 
+    @endif   
 @endsection
