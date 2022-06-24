@@ -5,6 +5,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,6 @@ Route::group(['middleware' =>['auth', 'cekRole:admin,user']],function(){
 
 Route::group(['middleware' =>['auth', 'cekRole:user']],function(){
    
-    
     
     Route::get('/cart-index',[CartController::class, 'index']);
     Route::post('cart/{id}', [CartController::class, 'tambahCart']);

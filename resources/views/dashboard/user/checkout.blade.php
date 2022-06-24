@@ -125,7 +125,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <!-- <form action="#" method="POST"> -->
             <form action="/add-address" method="POST">
                 <div class="modal-body">
                     @csrf
@@ -133,7 +132,6 @@
                         <div class="col-md-6">
                             <div class="tax-select mb-25px">
                                 <label>Nama Penerima</label>
-                                <!-- <input type="text" class="px-2 @error('nama_penerima') border-danger @enderror" name="nama_penerima" placeholder="Masukkan Nama Penerima" value="{{old('nama_penerima')}}" /> -->
 
                                 <input type="text" class="px-2 @error('nama_penerima') border-danger @enderror" name="nama_penerima" placeholder="Masukkan Nama Penerima" value="{{Auth::user()->name}}" />
 
@@ -221,9 +219,7 @@
                                     <label>Status Alamat Pengiriman</label>
                                     <select class="email s-email s-wid @error('status') border-danger @enderror" name="status">
                                         <option disabled selected hidden>-- Pilih status alamat pengiriman --</option>
-                                        <!-- <option value="1">Utama</option> -->
-                                        <!-- <option value="0">Opsional</option> -->
-
+                                        
                                         <option value="Utama">Utama</option>
                                         <option value="Opsional">Opsional</option>
 
