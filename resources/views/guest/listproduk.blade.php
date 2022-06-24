@@ -24,7 +24,7 @@
                 <h4>{{ $item->nama }}</h4>
                   <span>{{ $item->kategori->nama_kategori }}</span>
                   <p>{{ $item->deskripsi }}</p>
-
+                  <p>Rp. {{ number_format($item->harga) }}</p>
                   
                 </div>
               </div>

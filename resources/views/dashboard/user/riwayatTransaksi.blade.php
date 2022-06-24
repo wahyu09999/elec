@@ -29,7 +29,10 @@
             <td>{{ $item->alamat->alamat }}</td>
             <td>{{ ($item->status == 1) ? 'Sudah Diverifikasi' : 'Belum Diverifikasi' }}</td>
             <td>
-            <a href="/cetak-transaksi/{{$item->id}}" class="btn btn-success">Cetak</a>
+                @if($item->status == 1)
+                <a href="/cetak-transaksi/{{$item->id}}" class="btn btn-success">Cetak</a>
+            @endif
+
             </td>
         </tr>
         @endforeach
