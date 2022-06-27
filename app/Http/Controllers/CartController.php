@@ -180,7 +180,7 @@ class CartController extends Controller
         return redirect("/riwayat-transaksi");
     }
 
-    public function indexTransaction(Type $var = null)
+    public function indexTransaction()
     {
         $data = Payment::all();
         return view('dashboard/user/riwayatTransaksi', ['data' => $data]);
