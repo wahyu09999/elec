@@ -14,6 +14,7 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //fungsi index untuk menampilkan barang yang sudah di inputkan
     public function index()
     {
         $data_barang = Barang::with('kategori')->get();
@@ -29,6 +30,8 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     //fungsi create untuk menambah data kategori
     public function create()
     {
         $data_barang_create = Kategori::all();
@@ -41,6 +44,7 @@ class BarangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //fungsi store untuk menyimpan data yang sudah dibuat di fungsi create
     public function store(Request $request)
     {
         $request->validate([
@@ -78,6 +82,7 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //fungsi show untuk menampilkan data berdasarkan id kategori(spesifik)
     public function show($id)
     {
         $data_barang_show = Barang::with('kategori')->where('id', $id)->first();
@@ -90,6 +95,7 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //fungsi edit untuk mengubah data
     public function edit($id)
     {
         $data_barang_edit = Barang::with('kategori')->where('id', $id)->first();
@@ -104,6 +110,7 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //fungsi update untuk menyimpan berubahan data yang sudah di edit 
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -141,6 +148,7 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //fungsi destroy untuk menghapus data berdasarkan parameter id
     public function destroy($id)
     {
         Barang::where('id', $id)->delete();

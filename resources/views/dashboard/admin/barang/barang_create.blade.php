@@ -24,6 +24,7 @@
                 </ul>
             </div>
         @endif
+        <!-- simpan ke fungsi store -->
         <form method="post" action="{{ route('barang.store') }}" id="myForm" enctype="multipart/form-data">
         @csrf
             <div class="form-group">

@@ -26,6 +26,7 @@
                 </ul>
             </div>
         @endif
+        <!-- untuk menyimpan data edit -->
         <form method="post" action="{{ route('barang.update', $data_barang_edit->id) }}" id="myForm" enctype="multipart/form-data">
         @csrf
         @method('PUT')

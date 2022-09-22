@@ -9,6 +9,7 @@
     </div>
     
     <div class="float-right my-2">
+        <!-- //untuk memanggil form create -->
         <a class="btn btn-success" href="{{ route('barang.create') }}"> Input Barang</a>
     </div>
     <table class="table table-bordered">
@@ -33,9 +34,11 @@
             <td><img width="125px"
                 src="{{asset('storage/'.$brng->gambar)}}"></td> 
             <td>
+                <!-- untuk menghapus data -->
             <form action="{{ route('barang.destroy',['barang'=>$brng->id]) }}" method="POST">
-                
+                <!-- untuk memanggilk fungsi show -->
                 <a class="btn btn-info" href="{{ route('barang.show',$brng->id) }}">Show</a>
+                <!-- untuk memanggil form edit -->
                 <a class="btn btn-primary" href="{{ route('barang.edit',$brng->id) }}">Edit</a>
                 @csrf
                 @method('DELETE')

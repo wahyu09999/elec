@@ -13,6 +13,7 @@ class KategoriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //fungsi index untuk menampilkan barang yang sudah di inputkan
     public function index()
     {
         $data_kategori = Kategori::all();
@@ -25,6 +26,8 @@ class KategoriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     //fungsi create untuk menambah data kategori
     public function create()
     {
         $data_kategori_create = Kategori::all();
@@ -37,6 +40,7 @@ class KategoriController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //fungsi store untuk menyimpan data yang sudah dibuat di fungsi create
     public function store(Request $request)
     {
         $request->validate([
@@ -58,6 +62,8 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //fungsi show untuk menampilkan data berdasarkan id kategori(spesifik)
     public function show($id)
     {
         $data_kategori_show = Kategori::where('id', $id)->first();
@@ -70,6 +76,8 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //fungsi edit untuk mengubah data
     public function edit($id)
     {
         $data_kategori_edit = Kategori::where('id', $id)->first();
@@ -83,6 +91,8 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //fungsi update untuk menyimpan berubahan data yang sudah di edit 
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -104,6 +114,8 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //fungsi destroy untuk menghapus data berdasarkan parameter id
     public function destroy($id)
     {
         Kategori::where('id', $id)->delete();

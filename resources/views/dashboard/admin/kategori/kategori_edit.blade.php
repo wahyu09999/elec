@@ -22,6 +22,7 @@
             </ul>
         </div>
     @endif
+    <!-- untuk melakukan update data -->
     <form method="post" action="{{ route('kategori.update', $data_kategori_edit->id) }}" id="myForm" enctype="multipart/form-data">
     @csrf
     @method('PUT')
