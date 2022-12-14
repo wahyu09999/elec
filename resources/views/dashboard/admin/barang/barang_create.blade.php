@@ -53,7 +53,7 @@
             </div>
             <div class="form-group">
                 <label for="foto">Foto</label> 
-                <input type="file" name="foto" class="form-control" id="foto" aria-describedby="foto" > 
+                <input type="file" name="gambar" class="form-control" id="foto" aria-describedby="foto" > 
             </div>
             <br>
             <button type="submit" class="btn btn-primary">Submit</button>
