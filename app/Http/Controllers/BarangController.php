@@ -104,7 +104,7 @@ class BarangController extends Controller
         $data_barang_store->harga = $request->get('harga');
         $data_barang_store->stok = $request->get('stok');
         $data_barang_store->deskripsi = $request->get('deskripsi');
-        $data_barang_store->foto = $filenametostore;
+        $data_barang_store->gambar = $filenametostore;
 
         $data_kategori = new Kategori;
         $data_kategori->id = $request->get('kategori');
