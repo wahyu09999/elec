@@ -55,12 +55,12 @@ class BarangController extends Controller
             'harga' => 'required',
             'stok' => 'required',
             'deskripsi' => 'required',
-            'foto'=> 'required',
+            'gambar'=> 'required',
         ]);
         $image_name = '';
-        if ($request->file('foto')) {
-            $image_name = $request->file('foto');
-            // $image_name = $request->file('foto')->store('images', 'public');
+        if ($request->file('gambar')) {
+            $image_name = $request->file('gambar');
+            // $image_name = $request->file('gambar')->store('images', 'public');
             $storage = new StorageClient([
                 'keyFilePath' => public_path('key.json')
             ]);
@@ -69,19 +69,19 @@ class BarangController extends Controller
             $bucket = $storage->bucket($bucketName);
 
             //get filename with extension
-            $filenamewithextension = pathinfo($request->file('foto')->getClientOriginalName(), PATHINFO_FILENAME);
-            // $filenamewithextension = $request->file('foto')->getClientOriginalName();
+            $filenamewithextension = pathinfo($request->file('gambar')->getClientOriginalName(), PATHINFO_FILENAME);
+            // $filenamewithextension = $request->file('gambar')->getClientOriginalName();
 
             //get filename without extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
 
             //get file extension
-            $extension = $request->file('foto')->getClientOriginalExtension();
+            $extension = $request->file('gambar')->getClientOriginalExtension();
 
             //filename to store
             $filenametostore = $filename . '_' . uniqid() . '.' . $extension;
 
-            Storage::put('public/uploads/' . $filenametostore, fopen($request->file('foto'), 'r+'));
+            Storage::put('public/uploads/' . $filenametostore, fopen($request->file('gambar'), 'r+'));
 
             $filepath = storage_path('app/public/uploads/' . $filenametostore);
 
@@ -95,7 +95,7 @@ class BarangController extends Controller
             // delete file from local disk
             Storage::delete('public/uploads/' . $filenametostore);
         }
-        // if ($request->file('foto')) {
+        // if ($request->file('gambar')) {
         //     $image_name = $request->file('foto')->store('images', 'public');
         // }
 
