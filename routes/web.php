@@ -35,12 +35,13 @@ Route::get('/', function () {
 Route::get('/guest/listproduk', [GuestController::class, 'index']);
 
 
-
+Route::group(['middleware' =>['auth', 'cekRole:admin,user']],function(){
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
     Route::resource('kategori', KategoriController::class);
     Route::resource('transaksi', TransaksiController::class);
     Route::resource('barang', BarangController::class);
-
+    
+});
 
 Route::group(['middleware' =>['auth', 'cekRole:user']],function(){
    
