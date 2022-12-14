@@ -194,10 +194,10 @@ class BarangController extends Controller
             Storage::delete('public/uploads/' . $filenametostore);
         }
 
-        if ($request->file('foto')) {
-            $image_name = $filenametostore;
-            $data = array_merge($data, array('foto' => $image_name));
-        }
+        // if ($request->file('foto')) {
+        //     $image_name = $filenametostore;
+        //     $data_barang_update = array_merge($data, array('foto' => $image_name));
+        // }
 
         Barang::where('id', $id)->update($data_barang_update);
 
