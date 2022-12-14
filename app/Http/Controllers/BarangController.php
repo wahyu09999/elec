@@ -6,6 +6,9 @@ use App\Models\Kategori;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Google\Cloud\Storage\StorageClient;
+use Illuminate\Support\Facades\URL;
 
 class BarangController extends Controller
 {
@@ -54,17 +57,54 @@ class BarangController extends Controller
             'deskripsi' => 'required',
             'foto'=> 'required',
         ]);
-
+        $image_name = '';
         if ($request->file('foto')) {
-            $image_name = $request->file('foto')->store('images', 'public');
+            $image_name = $request->file('foto');
+            // $image_name = $request->file('foto')->store('images', 'public');
+            $storage = new StorageClient([
+                'keyFilePath' => public_path('key.json')
+            ]);
+
+            $bucketName = env('GOOGLE_CLOUD_BUCKET');
+            $bucket = $storage->bucket($bucketName);
+
+            //get filename with extension
+            $filenamewithextension = pathinfo($request->file('foto')->getClientOriginalName(), PATHINFO_FILENAME);
+            // $filenamewithextension = $request->file('foto')->getClientOriginalName();
+
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+            //get file extension
+            $extension = $request->file('foto')->getClientOriginalExtension();
+
+            //filename to store
+            $filenametostore = $filename . '_' . uniqid() . '.' . $extension;
+
+            Storage::put('public/uploads/' . $filenametostore, fopen($request->file('foto'), 'r+'));
+
+            $filepath = storage_path('app/public/uploads/' . $filenametostore);
+
+            $object = $bucket->upload(
+                fopen($filepath, 'r'),
+                [
+                    'predefinedAcl' => 'publicRead'
+                ]
+            );
+
+            // delete file from local disk
+            Storage::delete('public/uploads/' . $filenametostore);
         }
+        // if ($request->file('foto')) {
+        //     $image_name = $request->file('foto')->store('images', 'public');
+        // }
 
         $data_barang_store = new Barang;
         $data_barang_store->nama = $request->get('nama');
         $data_barang_store->harga = $request->get('harga');
         $data_barang_store->stok = $request->get('stok');
         $data_barang_store->deskripsi = $request->get('deskripsi');
-        $data_barang_store->gambar = $image_name;
+        $data_barang_store->gambar = $filenametostore;
 
         $data_kategori = new Kategori;
         $data_kategori->id = $request->get('kategori');
@@ -120,15 +160,47 @@ class BarangController extends Controller
             'deskripsi' => 'required',
             'foto'=>'required',
         ]);
-
+        $image_name = '';
         $data_barang_update = Barang::with('kategori')->where('id', $id)->first();
         $data_barang_update->nama = $request->get('nama');
         $data_barang_update->harga = $request->get('harga');
         $data_barang_update->stok = $request->get('stok');
         $data_barang_update->deskripsi = $request->get('deskripsi');
-        if($data_barang_update->gambar && file_exists(storage_path('./app/public/'. $data_barang_update->gambar))){
-            Storage::delete(['./public/',  $data_barang_update->gambar]);
+
+        $data_barang_update = Barang::where('id', $id)->first();
+        $storage = new StorageClient();
+        $bucketName = env('GOOGLE_CLOUD_BUCKET');
+        $bucket = $storage->bucket($bucketName);
+        $object = $bucket->object($data_barang_update->foto);
+
+        if(($request->file('foto') && $object != null)){
+            $image_name = $request->file('foto');
+            $object->delete();
+            $filenamewithextension = pathinfo($request->file('foto')->getClientOriginalName(), PATHINFO_FILENAME);
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+            $extension = $request->file('foto')->getClientOriginalExtension();
+            $filenametostore = $filename . '_' . uniqid() . '.' . $extension;
+            Storage::put('public/uploads/' . $filenametostore, fopen($request->file('foto'), 'r+'));
+            $filepath = storage_path('app/public/uploads/' . $filenametostore);
+
+            $object = $bucket->upload(
+                fopen($filepath, 'r'),
+                [
+                    'predefinedAcl' => 'publicRead'
+                ]
+            );
+
+            // delete file from local disk
+            Storage::delete('public/uploads/' . $filenametostore);
         }
+
+        if ($request->file('foto')) {
+            $image_name = $filenametostore;
+            $data = array_merge($data, array('foto' => $image_name));
+        }
+
+        Barang::where('id', $id)->update($data_barang_update);
+
         $image_name = $request->file('foto')->store('image', 'public');
         $data_barang_update->gambar = $image_name;
 
@@ -151,7 +223,17 @@ class BarangController extends Controller
     //fungsi destroy untuk menghapus data berdasarkan parameter id
     public function destroy($id)
     {
-        Barang::where('id', $id)->delete();
+        $barangs = Barang::all()->where('id', $id)->first();
+        $storage = new StorageClient();
+
+        $bucketName = env('GOOGLE_CLOUD_BUCKET');
+        $bucket = $storage->bucket($bucketName);
+        $object = $bucket->object($barangs->foto);
+
+
+
+        $object->delete();
+        $barangs->delete($barangs);
         return redirect()->route('barang.index')
             -> with('success', 'Mahasiswa Berhasil Dihapus');
     }
