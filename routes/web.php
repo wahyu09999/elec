@@ -25,7 +25,7 @@ Auth::routes();
 Route::get('/mysql', function () {
     Artisan::call('migrate:rollback', ['--force' => true]);
     Artisan::call('migrate', ['--force' => true]);
-    Artisan::call('db:seed', ['--force' => true]);
+    Artisan::call('db:seed', ['--force'=>true]);
 });
 
 Route::get('/', function () {
