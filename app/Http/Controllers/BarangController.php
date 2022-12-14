@@ -21,11 +21,11 @@ class BarangController extends Controller
     public function index()
     {
         $data_barang = Barang::with('kategori')->get();
-        if (auth()->user()->role=='user') {
-            return view('/dashboard/user/listproduk', ['data_barang' => $data_barang]);
-        } else {
+        // if (auth()->user()->role=='user') {
+        //     return view('/dashboard/user/listproduk', ['data_barang' => $data_barang]);
+        // } else {
             return view('/dashboard/admin/barang/barang_index', ['data_barang' => $data_barang]);
-        }
+        // }
     }
 
     /**
