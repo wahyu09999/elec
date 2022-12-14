@@ -32,7 +32,7 @@
             <td>{{ $brng ->stok }}</td>
             <td>{{ $brng ->deskripsi }}</td>
             <td><img width="125px"
-                src="{{asset('storage/'.$brng->gambar)}}"></td> 
+                src="{{'https://storage.googleapis.com/cloudwrz/'.$brng->gambar}}"></td> 
             <td>
                 <!-- untuk menghapus data -->
             <form action="{{ route('barang.destroy',['barang'=>$brng->id]) }}" method="POST">
