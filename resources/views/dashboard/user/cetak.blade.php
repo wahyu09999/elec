@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Invoice Transaction {{$data->no_invoice}}</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <style>
         .invoice-box {
