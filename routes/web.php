@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('/mysql', function () {
-    // Artisan::call('migrate:rollback', ['--force' => true]);
+    Artisan::call('migrate:rollback', ['--force' => true]);
     Artisan::call('migrate', ['--force' => true]);
     Artisan::call('db:seed', ['--force'=>true]);
 });
